@@ -2,32 +2,35 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { ArrowRight, Calendar, MapPin, Briefcase } from "lucide-react"
+import { ArrowRight, Briefcase } from "lucide-react"
 import Link from "next/link"
+import { currentProjects, completedProjects } from "@/lib/projects-data"
 
-const projects = [
+// Show a sample of current projects from real data
+const featuredProjects = [
   {
-    title: "ADNOC Offshore Platform Support",
+    title: currentProjects[0].activity,
+    client: currentProjects[0].client,
+    vessel: currentProjects[0].vessel,
     category: "Current Project",
-    year: "2024",
-    location: "Abu Dhabi",
-    description: "Comprehensive vessel support and diving operations for offshore platform maintenance.",
+    description: `${currentProjects[0].vessel} - ${currentProjects[0].activity}`,
     image: "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=1200&auto=format&fit=crop",
   },
   {
-    title: "Subsea Pipeline Inspection",
+    title: currentProjects[16].activity,
+    client: currentProjects[16].client,
+    vessel: currentProjects[16].vessel,
     category: "Current Project", 
-    year: "2024",
-    location: "UAE Waters",
-    description: "Underwater inspection and maintenance of subsea pipelines using IMCA-certified diving teams.",
+    description: `${currentProjects[16].vessel} - Supporting NPCC offshore operations in Abu Dhabi`,
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1200&auto=format&fit=crop",
   },
   {
-    title: "Drilling Rig Support Operations",
+    title: completedProjects[5].activity,
+    client: completedProjects[5].client,
+    vessel: completedProjects[5].vessel,
     category: "Completed",
-    year: "2023",
-    location: "Arabian Gulf",
-    description: "24/7 safety standby and supply vessel support for offshore drilling operations.",
+    period: completedProjects[5].period,
+    description: `${completedProjects[5].vessel} - DP-2 vessel operations for ADNOC Offshore`,
     image: "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=1200&auto=format&fit=crop",
   },
 ]
@@ -57,16 +60,16 @@ export function Projects() {
             </h2>
           </div>
           <Link
-            href="#projects"
+            href="/projects"
             className="inline-flex items-center gap-2 px-5 py-2.5 border border-border rounded-xl text-foreground font-medium hover:bg-secondary transition-colors group"
           >
-            View All Projects
+            View All {currentProjects.length + completedProjects.length}+ Projects
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
+          {featuredProjects.map((project, i) => (
             <motion.article
               key={project.title}
               initial={{ opacity: 0, y: 40 }}
@@ -93,19 +96,14 @@ export function Projects() {
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {project.year}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5" />
-                    {project.location}
+                  <span className="flex items-center gap-1 font-medium text-primary">
+                    {project.client}
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
+                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                  {project.vessel && <span className="text-accent">{project.vessel}:</span>} {project.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                   {project.description}
                 </p>
               </div>
