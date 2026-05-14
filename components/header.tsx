@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { Menu, X, Phone, Mail, Anchor, Waves } from "lucide-react"
+import { Menu, X, Phone, Mail, Waves } from "lucide-react"
+import Image from "next/image"
 import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
@@ -63,12 +64,15 @@ export function Header() {
         {/* Main nav */}
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-primary/30 transition-shadow">
-                <Anchor className="w-6 h-6 text-primary-foreground" />
-              </div>
-              {/* Water ripple effect */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+            <div className="relative w-14 h-14 group-hover:scale-105 transition-transform duration-300">
+              <Image
+                src="/logos/mutawa.png"
+                alt="Al Mutawa Marine Works"
+                fill
+                className="object-contain"
+                sizes="56px"
+                priority
+              />
             </div>
             <div>
               <p className="text-base font-bold tracking-tight text-foreground">Al Mutawa</p>
@@ -122,8 +126,14 @@ export function Header() {
             <div className="bg-gradient-to-r from-primary to-accent p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center">
-                    <Anchor className="w-5 h-5 text-white" />
+                  <div className="relative w-12 h-12 bg-white/20 backdrop-blur rounded-lg p-1">
+                    <Image
+                      src="/logos/mutawa.png"
+                      alt="Al Mutawa Marine Works"
+                      fill
+                      className="object-contain p-1"
+                      sizes="48px"
+                    />
                   </div>
                   <div>
                     <p className="text-sm font-bold text-white">Al Mutawa</p>

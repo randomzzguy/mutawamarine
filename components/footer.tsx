@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Anchor, ArrowRight, Linkedin, Twitter, Facebook } from "lucide-react"
+import { ArrowRight, Linkedin, Twitter, Facebook } from "lucide-react"
+import Image from "next/image"
 
 const footerLinks = {
   services: [
@@ -72,8 +73,14 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Anchor className="w-6 h-6 text-white" />
+              <div className="relative w-14 h-14 group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <Image
+                  src="/logos/mutawa.png"
+                  alt="Al Mutawa Marine Works"
+                  fill
+                  className="object-contain"
+                  sizes="56px"
+                />
               </div>
               <div>
                 <p className="font-bold text-foreground">Al Mutawa</p>
