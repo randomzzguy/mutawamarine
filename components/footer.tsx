@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Anchor, ArrowRight, Linkedin, Twitter, Facebook } from "lucide-react"
+import { ArrowRight, Linkedin, Twitter, Facebook, Phone, Mail } from "lucide-react"
+import Image from "next/image"
 
 const footerLinks = {
   services: [
@@ -14,7 +15,8 @@ const footerLinks = {
   company: [
     { label: "About Us", href: "#about" },
     { label: "Our Fleet", href: "#fleet" },
-    { label: "Projects", href: "#projects" },
+    { label: "Projects", href: "/projects" },
+    { label: "Company Policies", href: "/policies" },
     { label: "Certifications", href: "#certifications" },
   ],
   resources: [
@@ -55,13 +57,22 @@ export function Footer() {
                 Let&apos;s discuss how our 45+ years of expertise can support your offshore operations.
               </p>
             </div>
-            <Link
-              href="#contact"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-white/90 hover:shadow-xl transition-all duration-300 group"
-            >
-              <span>Start a Conversation</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="tel:+97126228283"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-white/90 hover:shadow-xl transition-all duration-300 group"
+              >
+                <Phone className="w-5 h-5" />
+                <span>Call Us Now</span>
+              </a>
+              <a
+                href="mailto:info@mutawamarine.com"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/15 text-white font-semibold rounded-xl border border-white/30 hover:bg-white/25 transition-all duration-300 group"
+              >
+                <Mail className="w-5 h-5" />
+                <span>Send an Email</span>
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>
@@ -72,8 +83,14 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Anchor className="w-6 h-6 text-white" />
+              <div className="relative w-14 h-14 group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <Image
+                  src="/logos/mutawa.png"
+                  alt="Al Mutawa Marine Works"
+                  fill
+                  className="object-contain"
+                  sizes="56px"
+                />
               </div>
               <div>
                 <p className="font-bold text-foreground">Al Mutawa</p>
@@ -160,11 +177,11 @@ export function Footer() {
             © {new Date().getFullYear()} Al Mutawa Marine Works L.L.C. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/policies" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Company Policies
+            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Privacy Policy
             </Link>
-            <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Project History
+            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Terms & Conditions
             </Link>
           </div>
         </div>

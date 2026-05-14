@@ -98,7 +98,7 @@ export function Contact() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="bg-background rounded-3xl p-8 lg:p-10 shadow-xl shadow-primary/5 border border-border">
-              <h3 className="text-xl font-semibold text-foreground mb-6">Request a Quote</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-6">Send an Enquiry</h3>
               
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
@@ -184,7 +184,7 @@ export function Contact() {
                   type="submit"
                   className="w-full py-4 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground font-medium rounded-xl hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center justify-center gap-2 group"
                 >
-                  <span>Send Message</span>
+                  <span>Submit Enquiry</span>
                   <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
