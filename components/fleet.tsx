@@ -5,14 +5,14 @@ import { useRef, useState } from "react"
 import { ChevronLeft, ChevronRight, Ship, Eye } from "lucide-react"
 
 const vessels = [
-  { name: "MUTAWA 17", type: "Offshore Support Vessel", image: "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=800&auto=format&fit=crop" },
-  { name: "MUTAWA 313", type: "Diving Support Vessel", image: "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=800&auto=format&fit=crop" },
-  { name: "MUTAWA 309", type: "Safety Standby Vessel", image: "https://images.unsplash.com/photo-1566438480900-0609be27a4be?q=80&w=800&auto=format&fit=crop" },
-  { name: "KHALFAN", type: "Supply Vessel", image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=800&auto=format&fit=crop" },
-  { name: "FAISAL 1", type: "Anchor Handling Tug", image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop" },
-  { name: "MUTAWA 101", type: "Utility Vessel", image: "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=800&auto=format&fit=crop" },
-  { name: "MUTAWA 202", type: "Diving Support Vessel", image: "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=800&auto=format&fit=crop" },
-  { name: "MUTAWA 301", type: "Offshore Support Vessel", image: "https://images.unsplash.com/photo-1566438480900-0609be27a4be?q=80&w=800&auto=format&fit=crop" },
+  { name: "MUTAWA 17", type: "Offshore Support Vessel", image: "/vessels/mutawa-17.jpg" },
+  { name: "MUTAWA 313", type: "Diving Support Vessel", image: "/vessels/mutawa-313.jpg" },
+  { name: "MUTAWA 309", type: "Safety Standby Vessel", image: "/vessels/mutawa-309.jpg" },
+  { name: "KHALFAN", type: "Supply Vessel", image: "/vessels/khalfan.jpg" },
+  { name: "FAISAL 1", type: "Anchor Handling Tug", image: "/vessels/faisal-1.jpg" },
+  { name: "MUTAWA 101", type: "Utility Vessel", image: "/vessels/mutawa-101.jpg" },
+  { name: "MUTAWA 202", type: "Diving Support Vessel", image: "/vessels/mutawa-202.jpg" },
+  { name: "MUTAWA 301", type: "Offshore Support Vessel", image: "/vessels/mutawa-301.jpg" },
 ]
 
 const vesselCategories = [
