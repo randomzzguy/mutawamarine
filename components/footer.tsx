@@ -15,7 +15,8 @@ const footerLinks = {
   company: [
     { label: "About Us", href: "#about" },
     { label: "Our Fleet", href: "#fleet" },
-    { label: "Projects", href: "#projects" },
+    { label: "Projects", href: "/projects" },
+    { label: "Company Policies", href: "/policies" },
     { label: "Certifications", href: "#certifications" },
   ],
   resources: [
@@ -176,11 +177,11 @@ export function Footer() {
             © {new Date().getFullYear()} Al Mutawa Marine Works L.L.C. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/policies" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Company Policies
+            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Privacy Policy
             </Link>
-            <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Project History
+            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Terms & Conditions
             </Link>
           </div>
         </div>
