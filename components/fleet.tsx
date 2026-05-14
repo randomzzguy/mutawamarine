@@ -44,6 +44,7 @@ export function Fleet() {
   }
 
   const openVesselModal = (vessel: VesselSpec) => {
+    console.log("[v0] Opening modal for vessel:", vessel.shipName)
     setSelectedVessel(vessel)
     setIsModalOpen(true)
   }
@@ -129,13 +130,14 @@ export function Fleet() {
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {vessels.map((vessel, i) => (
-            <motion.div
+            <motion.button
               key={vessel.shipName}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.05 * Math.min(i, 10) }}
-              className="flex-shrink-0 w-[320px] md:w-[360px] group cursor-pointer"
+              className="flex-shrink-0 w-[320px] md:w-[360px] group cursor-pointer text-left"
               onClick={() => openVesselModal(vessel)}
+              type="button"
             >
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 shadow-lg shadow-primary/5">
                 <Image
@@ -163,12 +165,13 @@ export function Fleet() {
                 <h3 className="text-lg font-semibold text-foreground mb-1">{vessel.shipName}</h3>
                 <p className="text-sm text-muted-foreground">{vessel.type}</p>
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </motion.div>
       </section>
 
       {/* Vessel Modal */}
+      {console.log("[v0] Modal state - isOpen:", isModalOpen, "selectedVessel:", selectedVessel?.shipName)}
       <VesselModal
         vessel={selectedVessel}
         isOpen={isModalOpen}
