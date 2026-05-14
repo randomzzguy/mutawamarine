@@ -160,11 +160,11 @@ export function Footer() {
             © {new Date().getFullYear()} Al Mutawa Marine Works L.L.C. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Privacy Policy
+            <Link href="/policies" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Company Policies
             </Link>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Terms of Service
+            <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Project History
             </Link>
           </div>
         </div>
