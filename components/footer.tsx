@@ -18,7 +18,7 @@ const footerLinks = {
     { label: "Certifications", href: "#certifications" },
   ],
   resources: [
-    { label: "Careers", href: "#careers" },
+    { label: "Careers", href: "/careers" },
     { label: "News", href: "#news" },
     { label: "Contact", href: "#contact" },
   ],
