@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { Menu, X, Phone, Mail, Award } from "lucide-react"
+import { Menu, X, Phone, Mail, Anchor, Waves } from "lucide-react"
+import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Fleet", href: "#fleet" },
   { label: "Projects", href: "#projects" },
-  { label: "News", href: "#news" },
   { label: "Contact", href: "#contact" },
 ]
 
@@ -33,68 +33,77 @@ export function Header() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? "bg-background/90 backdrop-blur-md border-b border-border" : "bg-transparent"
+          isScrolled 
+            ? "bg-card/95 backdrop-blur-lg shadow-lg shadow-primary/5" 
+            : "bg-transparent"
         }`}
       >
-        {/* Top bar */}
-        <div className={`border-b border-border/50 transition-all duration-300 ${isScrolled ? "h-0 opacity-0 overflow-hidden" : "h-auto opacity-100"}`}>
-          <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between text-xs text-muted-foreground">
-            <div className="flex items-center gap-6">
-              <a href="tel:971-2-5552800" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                <Phone className="w-3 h-3" />
-                <span>+971-2-5552800</span>
+        {/* Top bar with wave pattern */}
+        <div className={`bg-primary text-primary-foreground transition-all duration-300 overflow-hidden ${
+          isScrolled ? "h-0 opacity-0" : "h-auto opacity-100"
+        }`}>
+          <div className="max-w-7xl mx-auto px-6 py-2.5 flex items-center justify-between text-sm">
+            <div className="flex items-center gap-8">
+              <a href="tel:+97126228283" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <Phone className="w-4 h-4" />
+                <span>+971 2 622 8283</span>
               </a>
-              <a href="mailto:info@mutawamarine.com" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                <Mail className="w-3 h-3" />
+              <a href="mailto:info@mutawamarine.com" className="hidden sm:flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <Mail className="w-4 h-4" />
                 <span>info@mutawamarine.com</span>
               </a>
             </div>
-            <Link href="#certificates" className="flex items-center gap-2 hover:text-foreground transition-colors">
-              <Award className="w-3 h-3" />
-              <span>Certificates & Awards</span>
-            </Link>
+            <div className="flex items-center gap-2 text-primary-foreground/80">
+              <Waves className="w-4 h-4" />
+              <span className="hidden sm:inline">Abu Dhabi, UAE</span>
+            </div>
           </div>
         </div>
 
         {/* Main nav */}
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-accent flex items-center justify-center">
-              <span className="text-accent-foreground font-bold text-lg">M</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-primary/30 transition-shadow">
+                <Anchor className="w-6 h-6 text-primary-foreground" />
+              </div>
+              {/* Water ripple effect */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
             </div>
-            <div className="hidden sm:block">
-              <p className="text-sm font-semibold tracking-wide">AL MUTAWA</p>
-              <p className="text-[10px] text-muted-foreground tracking-widest uppercase">Marine Works</p>
+            <div>
+              <p className="text-base font-bold tracking-tight text-foreground">Al Mutawa</p>
+              <p className="text-[11px] text-muted-foreground tracking-widest uppercase">Marine Works L.L.C</p>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors relative group"
+                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full group-hover:w-3/4 transition-all duration-300" />
               </Link>
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
             <Link
               href="#contact"
-              className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors"
+              className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground text-sm font-medium rounded-lg hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
             >
-              Get in Touch
+              Request Quote
             </Link>
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden p-2 hover:bg-secondary transition-colors"
+              className="lg:hidden p-2.5 rounded-lg hover:bg-secondary transition-colors"
               aria-label="Open menu"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-5 h-5 text-foreground" />
             </button>
           </div>
         </div>
@@ -107,26 +116,30 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background"
+            className="fixed inset-0 z-50 bg-card"
           >
-            <div className="flex items-center justify-between p-6 border-b border-border">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-accent flex items-center justify-center">
-                  <span className="text-accent-foreground font-bold text-lg">M</span>
+            {/* Ocean gradient header */}
+            <div className="bg-gradient-to-r from-primary to-accent p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center">
+                    <Anchor className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-white">Al Mutawa</p>
+                    <p className="text-[10px] text-white/70 tracking-widest uppercase">Marine Works</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold tracking-wide">AL MUTAWA</p>
-                  <p className="text-[10px] text-muted-foreground tracking-widest uppercase">Marine Works</p>
-                </div>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5 text-white" />
+                </button>
               </div>
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 hover:bg-secondary transition-colors"
-                aria-label="Close menu"
-              >
-                <X className="w-5 h-5" />
-              </button>
             </div>
+            
             <nav className="p-6 space-y-1">
               {navItems.map((item, i) => (
                 <motion.div
@@ -138,17 +151,25 @@ export function Header() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block py-4 text-2xl font-light border-b border-border hover:text-accent transition-colors"
+                    className="flex items-center justify-between py-4 px-4 text-lg font-medium text-foreground hover:bg-secondary rounded-lg transition-colors"
                   >
                     {item.label}
+                    <Waves className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100" />
                   </Link>
                 </motion.div>
               ))}
             </nav>
-            <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-border">
-              <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-                <a href="tel:971-2-5552800" className="hover:text-foreground transition-colors">+971-2-5552800</a>
-                <a href="mailto:info@mutawamarine.com" className="hover:text-foreground transition-colors">info@mutawamarine.com</a>
+            
+            <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-border bg-secondary/50">
+              <div className="flex flex-col gap-3 text-sm">
+                <a href="tel:+97126228283" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+                  <Phone className="w-4 h-4 text-primary" />
+                  +971 2 622 8283
+                </a>
+                <a href="mailto:info@mutawamarine.com" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+                  <Mail className="w-4 h-4 text-primary" />
+                  info@mutawamarine.com
+                </a>
               </div>
             </div>
           </motion.div>

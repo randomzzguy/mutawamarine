@@ -2,28 +2,32 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Award, ShieldCheck, FileCheck, Medal } from "lucide-react"
+import { Award, ShieldCheck, FileCheck, Medal, BadgeCheck } from "lucide-react"
 
 const certifications = [
   {
     icon: ShieldCheck,
     title: "IMCA Member",
-    description: "International Marine Contractors Association certified member",
+    description: "International Marine Contractors Association certified member since 1992",
+    color: "from-primary to-primary/80"
   },
   {
     icon: Award,
     title: "ISO 9001:2015",
-    description: "Quality Management System certification",
+    description: "Quality Management System certification for operational excellence",
+    color: "from-accent to-accent/80"
   },
   {
     icon: FileCheck,
     title: "ISO 14001:2015",
-    description: "Environmental Management System certification",
+    description: "Environmental Management System ensuring sustainable operations",
+    color: "from-primary to-accent"
   },
   {
     icon: Medal,
     title: "OHSAS 18001",
-    description: "Occupational Health and Safety certification",
+    description: "Occupational Health and Safety management certification",
+    color: "from-accent to-primary"
   },
 ]
 
@@ -32,20 +36,24 @@ export function Certifications() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="certificates" className="py-24 border-t border-border" ref={ref}>
+    <section id="certifications" className="py-24 bg-secondary/30" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
-          <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase mb-4 block">
-            Quality & Compliance
-          </span>
-          <h2 className="text-3xl md:text-4xl font-light">
-            Industry Certifications
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+            <BadgeCheck className="w-4 h-4" />
+            <span>Quality & Compliance</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Industry <span className="text-gradient-ocean">Certifications</span>
           </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Maintaining the highest standards of quality, safety, and environmental responsibility
+          </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -55,11 +63,16 @@ export function Certifications() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * i }}
-              className="p-6 border border-border hover:border-foreground/30 transition-colors group"
+              className="relative bg-card p-6 rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all group overflow-hidden"
             >
-              <cert.icon className="w-8 h-8 mb-4 text-muted-foreground group-hover:text-accent transition-colors" />
-              <h3 className="font-medium mb-2">{cert.title}</h3>
-              <p className="text-sm text-muted-foreground">{cert.description}</p>
+              {/* Top gradient */}
+              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${cert.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
+              
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <cert.icon className="w-6 h-6" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">{cert.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{cert.description}</p>
             </motion.div>
           ))}
         </div>

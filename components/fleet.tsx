@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, Ship, Eye } from "lucide-react"
 
 const vessels = [
   { name: "MUTAWA 17", type: "Offshore Support Vessel", image: "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=800&auto=format&fit=crop" },
@@ -13,8 +13,15 @@ const vessels = [
   { name: "MUTAWA 101", type: "Utility Vessel", image: "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=800&auto=format&fit=crop" },
   { name: "MUTAWA 202", type: "Diving Support Vessel", image: "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=800&auto=format&fit=crop" },
   { name: "MUTAWA 301", type: "Offshore Support Vessel", image: "https://images.unsplash.com/photo-1566438480900-0609be27a4be?q=80&w=800&auto=format&fit=crop" },
-  { name: "MUTAWA 401", type: "Jack-up Barge", image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=800&auto=format&fit=crop" },
-  { name: "MUTAWA 402", type: "Jack-up Barge", image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop" },
+]
+
+const vesselCategories = [
+  { label: "Diving Support", count: 8, color: "bg-primary" },
+  { label: "Safety Standby", count: 6, color: "bg-accent" },
+  { label: "Supply Vessels", count: 5, color: "bg-primary/70" },
+  { label: "Anchor Tugs", count: 4, color: "bg-accent/70" },
+  { label: "Jack-up Barges", count: 2, color: "bg-primary/50" },
+  { label: "Utility", count: 2, color: "bg-accent/50" },
 ]
 
 export function Fleet() {
@@ -34,7 +41,7 @@ export function Fleet() {
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 400
+      const scrollAmount = 380
       scrollRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth"
@@ -44,48 +51,63 @@ export function Fleet() {
   }
 
   return (
-    <section id="fleet" className="py-32 bg-card" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 mb-12">
+    <section id="fleet" className="py-24 lg:py-32 bg-gradient-to-b from-card to-background" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12"
         >
           <div>
-            <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase mb-4 block">
-              Our Fleet
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight">
-              <span className="text-balance">
-                27 <span className="italic">vessels</span> ready
-                <br className="hidden md:block" /> for deployment
-              </span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+              <Ship className="w-4 h-4" />
+              <span>Our Fleet</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground">
+              <span className="text-gradient-ocean">27 Vessels</span>{" "}
+              Ready for Deployment
             </h2>
           </div>
-          <div className="flex items-center gap-4">
-            <p className="text-muted-foreground max-w-xs text-sm leading-relaxed hidden md:block">
-              Owns & operates a diverse fleet of offshore support vessels and jack-up barges.
-            </p>
-            <div className="flex gap-2">
-              <button
-                onClick={() => scroll("left")}
-                disabled={!canScrollLeft}
-                className="p-3 border border-border hover:border-foreground disabled:opacity-30 disabled:hover:border-border transition-colors"
-                aria-label="Scroll left"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => scroll("right")}
-                disabled={!canScrollRight}
-                className="p-3 border border-border hover:border-foreground disabled:opacity-30 disabled:hover:border-border transition-colors"
-                aria-label="Scroll right"
-              >
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
+          
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className="p-3 rounded-xl bg-card border border-border hover:border-primary hover:bg-primary/5 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className="p-3 rounded-xl bg-card border border-border hover:border-primary hover:bg-primary/5 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
           </div>
+        </motion.div>
+
+        {/* Vessel categories */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap gap-3 mb-10"
+        >
+          {vesselCategories.map((cat) => (
+            <div 
+              key={cat.label}
+              className="flex items-center gap-2 px-4 py-2 bg-card rounded-full border border-border"
+            >
+              <div className={`w-2 h-2 rounded-full ${cat.color}`} />
+              <span className="text-sm text-foreground font-medium">{cat.count}</span>
+              <span className="text-sm text-muted-foreground">{cat.label}</span>
+            </div>
+          ))}
         </motion.div>
       </div>
 
@@ -105,49 +127,36 @@ export function Fleet() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 * i }}
-            className="flex-shrink-0 w-[300px] md:w-[350px] group cursor-pointer"
+            className="flex-shrink-0 w-[320px] md:w-[360px] group cursor-pointer"
           >
-            <div className="aspect-[4/3] overflow-hidden mb-4 relative">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 shadow-lg shadow-primary/5">
               <img
                 src={vessel.image}
                 alt={vessel.name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                <div className="p-2 bg-foreground text-background">
-                  <ArrowUpRight className="w-5 h-5" />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              {/* View button */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                <div>
+                  <p className="text-white font-semibold">{vessel.name}</p>
+                  <p className="text-white/70 text-sm">{vessel.type}</p>
+                </div>
+                <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur flex items-center justify-center">
+                  <Eye className="w-5 h-5 text-white" />
                 </div>
               </div>
             </div>
-            <h3 className="text-lg font-medium mb-1">{vessel.name}</h3>
-            <p className="text-sm text-muted-foreground">{vessel.type}</p>
+            
+            <div className="px-1">
+              <h3 className="text-lg font-semibold text-foreground mb-1">{vessel.name}</h3>
+              <p className="text-sm text-muted-foreground">{vessel.type}</p>
+            </div>
           </motion.div>
         ))}
       </motion.div>
-
-      <div className="max-w-7xl mx-auto px-6 mt-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-wrap gap-8 pt-8 border-t border-border"
-        >
-          {[
-            { label: "Diving Support Vessels", count: "8" },
-            { label: "Safety Standby Vessels", count: "6" },
-            { label: "Supply Vessels", count: "5" },
-            { label: "Anchor Handling Tugs", count: "4" },
-            { label: "Jack-up Barges", count: "2" },
-            { label: "Utility Vessels", count: "2" },
-          ].map((item) => (
-            <div key={item.label} className="text-center">
-              <p className="text-2xl font-light">{item.count}</p>
-              <p className="text-xs text-muted-foreground">{item.label}</p>
-            </div>
-          ))}
-        </motion.div>
-      </div>
     </section>
   )
 }
