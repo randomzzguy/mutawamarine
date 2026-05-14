@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Linkedin, Twitter, Facebook } from "lucide-react"
+import { ArrowRight, Linkedin, Twitter, Facebook, Phone, Mail } from "lucide-react"
 import Image from "next/image"
 
 const footerLinks = {
@@ -56,13 +56,22 @@ export function Footer() {
                 Let&apos;s discuss how our 45+ years of expertise can support your offshore operations.
               </p>
             </div>
-            <Link
-              href="#contact"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-white/90 hover:shadow-xl transition-all duration-300 group"
-            >
-              <span>Start a Conversation</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="tel:+97126228283"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-white/90 hover:shadow-xl transition-all duration-300 group"
+              >
+                <Phone className="w-5 h-5" />
+                <span>Call Us Now</span>
+              </a>
+              <a
+                href="mailto:info@mutawamarine.com"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/15 text-white font-semibold rounded-xl border border-white/30 hover:bg-white/25 transition-all duration-300 group"
+              >
+                <Mail className="w-5 h-5" />
+                <span>Send an Email</span>
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -100,7 +100,7 @@ export function Header() {
               href="#contact"
               className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground text-sm font-medium rounded-lg hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
             >
-              Request Quote
+              Inquire
             </Link>
             <button
               onClick={() => setIsMobileMenuOpen(true)}
