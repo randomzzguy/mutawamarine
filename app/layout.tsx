@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: 'Al Mutawa Marine Works L.L.C | Specialized Offshore Services',
   description: 'Pioneers in offshore oil & gas industry since 1978. Specialized technical marine services, diving operations, and vessel support across the Gulf region. Abu Dhabi, UAE.',
   keywords: ['offshore services', 'marine services', 'diving operations', 'Abu Dhabi', 'UAE', 'oil and gas', 'vessel charter'],
+  icons: {
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.ico' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
 }
 
 export const viewport: Viewport = {
