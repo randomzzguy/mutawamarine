@@ -12,7 +12,7 @@ const services = [
     title: "Marine Services",
     shortDesc: "Full fleet of offshore support vessels",
     description: "Owns and charters different types of offshore support vessels including Diving Support Vessels, Safety Standby Vessels, Supply Vessels, Anchor Handling Tugs, and Utility/Offshore Support vessels.",
-    image: "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/marine-services.jpg",
     features: ["Diving Support Vessels", "Safety Standby Vessels", "Supply Vessels", "Anchor Handling Tugs"],
     color: "from-primary to-primary/80"
   },
