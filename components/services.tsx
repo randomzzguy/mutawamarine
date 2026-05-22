@@ -22,7 +22,7 @@ const services = [
     title: "Diving Operations",
     shortDesc: "IMCA certified professional diving",
     description: "Al Mutawa Marine Works has membership of International Marine Contractors Association (IMCA) and carries out all diving operations in compliance with IMCA Guidelines for safe and efficient underwater work.",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/diving-operations.jpg",
     features: ["IMCA Certified", "Surface Supplied Diving", "Underwater Inspection", "Subsea Maintenance"],
     color: "from-accent to-accent/80"
   },
